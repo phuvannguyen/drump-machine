@@ -1,8 +1,36 @@
 .App {
-  display: flex;
-  justify-content: center;
+  display: flex;  
   align-items: center;
+  
   width: 60%;
   height: 60%;
   background-color: #B7C3F3;
 }
+
+#display {
+  width: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 10px;  
+
+  
+
+}
+.drum-pad {
+  width: 30%;
+  padding: 30px;
+  margin: 5px;
+  border-radius: 3px;  
+  border: none;
+  box-shadow: black 3px 3px 5px;
+  background-color: #4F6272;
+  text-align: center;
+  font-size: 1.5rem;
+  color: #fff
+}
+
+.drum-pad:focus {
+  background-color: aqua;
+}
+
+
