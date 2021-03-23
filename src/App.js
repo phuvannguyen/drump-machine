@@ -122,14 +122,13 @@ function App() {
   
   useEffect(() => {
     window.addEventListener("keydown", handleKeyUp);
-    return window.removeEventListener("keydown", handleKeyUp);
+    // return window.removeEventListener("keydown", handleKeyUp);
 
   })
 
 
-  const handleOnclick = (e) => {
-        
-    console.log(e.target.value)
+  const handleOnclick = (e) => {        
+    
     
     const sound = document.getElementById(e.target.value);
     sound.currentTime = 0;
@@ -144,12 +143,18 @@ function App() {
   }
 
   const handleKeyUp = (e) => {
-    count.map(({keyCode})=> {
-      if (e.keyCode === keyCode) {
-        const sound = document.getElementById(e.target.value);
-        sound.currentTime = 0;
-        sound.play();
+    
+    console.log(e.keyCode);
 
+        
+    count.map(({keyCode, id})=> {      
+      if (e.keyCode === keyCode) {              
+        const sound = document.getElementById(e.key.toUpperCase());
+        sound.currentTime = 0;        
+        sound.play()
+        .then(()=> setLetter(id))
+        .catch((err)=> console.log(err))
+        
     }
     
       
@@ -168,7 +173,8 @@ function App() {
         <div>
         {count.map(
           ({keyCode, keyTrigger, id, url}, index) => 
-          <button  className="drum-pad" id={id} onClick={handleOnclick} onKeyDown={handleKeyUp} value={keyTrigger} key={index}>
+          <button  className="drum-pad" 
+          id={id} onClick={handleOnclick} onKeyDown={handleKeyUp} value={keyTrigger} key={index}>
             {keyTrigger}
             <audio className="clip" id={keyTrigger} src={url}></audio>
           </button>)}
